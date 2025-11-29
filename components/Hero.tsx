@@ -24,7 +24,7 @@ export default function Hero() {
 
         <h1 className="text-[clamp(42px,5vw,68px)] font-extrabold leading-[1.1] mb-md text-dark-text">
           <span className="text-primary-green relative inline-block">
-            {t('Agrotahlilchi', 'Агротахлилчи', 'AgroAnalyzer')}
+            {t('Agrotahlilchi', 'Агроанализатор', 'AgroAnalyzer')}
             <span className="absolute bottom-2 left-0 right-0 h-3 bg-accent-lime opacity-30 -z-10 animate-underline-expand" />
           </span>
           <br />
