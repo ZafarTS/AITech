@@ -90,8 +90,24 @@ export default function Team() {
         <div className="max-w-[900px] mx-auto mb-xl scroll-reveal">
           <div className="bg-gradient-to-br from-white to-light-green p-6 md:p-xl rounded-xl shadow-[0_20px_60px_rgba(31,160,63,0.15)] grid md:grid-cols-[auto_1fr] gap-6 md:gap-lg items-center relative overflow-hidden border-4 border-primary-green">
             <div className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-gradient-to-br from-primary-green to-deep-green flex items-center justify-center text-5xl md:text-7xl text-white font-extrabold border-8 border-white shadow-[0_15px_50px_rgba(31,160,63,0.3)] flex-shrink-0 mx-auto md:mx-0 overflow-hidden">
-              <img src="/users/user1.jpg" alt="Zafar To'raqulov" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'flex'; }} />
-              <span className="hidden">ZT</span>
+             <img
+  src="/users/user1.jpg"
+  alt="Zafar To'raqulov"
+  className="w-full h-full object-cover"
+  onError={(e) => {
+    const sibling = e.currentTarget.nextElementSibling;
+
+    // image'ni yashiramiz
+    e.currentTarget.style.display = 'none';
+
+    // sibling mavjudligini tekshiramiz
+    if (sibling instanceof HTMLElement) {
+      sibling.style.display = 'flex';
+    }
+  }}
+/>
+
+<span className="hidden">ZT</span>
             </div>
             <div className="text-center md:text-left">
               <span className="inline-block px-4 py-2 bg-primary-green text-white rounded-full text-sm font-bold mb-3">
@@ -131,8 +147,21 @@ export default function Team() {
           {teamMembers.map((member, idx) => (
             <div key={idx} className="scroll-reveal bg-white p-6 rounded-xl shadow-[0_8px_40px_rgba(0,0,0,0.06)] text-center hover:translate-y-[-8px] hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all">
               <div className="w-28 h-28 rounded-full bg-gradient-to-br from-primary-green to-deep-green flex items-center justify-center mx-auto mb-4 text-4xl text-white font-extrabold border-4 border-light-green shadow-[0_8px_30px_rgba(31,160,63,0.2)] overflow-hidden">
-                <img src={member.image} alt={member.name} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'flex'; }} />
-                <span className="hidden">{member.initials}</span>
+                <img
+  src={member.image}
+  alt={member.name}
+  className="w-full h-full object-cover"
+  onError={(e) => {
+    const sibling = e.currentTarget.nextElementSibling;
+
+    e.currentTarget.style.display = 'none';
+
+    if (sibling instanceof HTMLElement) {
+      sibling.style.display = 'flex';
+    }
+  }}
+/>
+<span className="hidden">{member.initials}</span>
               </div>
               <h3 className="text-lg font-extrabold text-dark-text mb-2">{member.name}</h3>
               <p className="text-sm text-primary-green font-bold mb-3">{member.role}</p>
