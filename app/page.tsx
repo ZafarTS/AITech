@@ -9,6 +9,7 @@ import { Achievements, Roadmap, Technologies, Footer } from '@/components/Sectio
 import { WhyWeCanDeliver, CurrentStage } from '@/components/EnhancedSections';
 import { AIUsage } from '@/components/AIUsage';
 import FAQ from '@/components/FAQ';
+import AgronomTogha from '@/components/AgronomTogha';
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <FAQ />
       </main>
       <Footer />
+      <AgronomTogha />
     </>
   );
 }
