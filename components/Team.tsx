@@ -115,7 +115,7 @@ export default function Team() {
               </span>
               <h3 className="text-3xl md:text-4xl font-extrabold text-dark-text mb-2">Zafar To'raqulov</h3>
               <p className="text-lg md:text-xl text-primary-green font-bold mb-3">
-                {t('Loyiha menejeri / SI muhandisi, OpenCV, Pytorch', 'Менеджер проекта / AI инженер, OpenCV, Pytorch', 'Project Manager / AI Engineer, OpenCV, Pytorch')}
+                {t('Loyiha menejeri / SI muhandisi, OpenCV, Pytorch, Numpy, Matplotlib', 'Менеджер проекта / AI инженер, OpenCV, Pytorch', 'Project Manager / AI Engineer, OpenCV, Pytorch')}
               </p>
               <p className="text-sm md:text-base text-gray-text leading-relaxed mb-4">
                 {t(
