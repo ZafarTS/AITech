@@ -390,12 +390,12 @@ export function Footer() {
                 {t('🔗 Demo Link:', '🔗 Демо ссылка:', '🔗 Demo Link:')}
               </strong>
               <a
-                href="https://agrotahlilchi.uz/mvp"
+                href="https://agrotahlilchi.uz/demo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white font-bold break-all no-underline border-b-2 border-white/30 hover:border-white transition-colors"
               >
-                https://agrotahlilchi.uz/mvp
+                https://agrotahlilchi.uz/demo
               </a>
             </div>
           </div>
