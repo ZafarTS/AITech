@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrotahlilchi - Mobil Ilova Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1FA03F 0%, #146B2E 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Info Section */
+        .info-section {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features li {
+            padding: 12px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features li:before {
+            content: "✓";
+            background: rgba(255, 255, 255, 0.2);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #1FA03F;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Frame */
+        .phone-frame {
+            position: relative;
+            width: 375px;
+            height: 812px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 14px #2a2a2a,
+                0 0 0 16px #1a1a1a;
+            flex-shrink: 0;
+        }
+
+        /* Notch */
+        .phone-frame:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        /* Speaker */
+        .phone-frame:after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            z-index: 11;
+        }
+
+        /* Screen */
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1FA03F;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .info-section {
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .logo {
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .phone-frame {
+                width: 320px;
+                height: 693px;
+                border-radius: 35px;
+                padding: 12px;
+            }
+
+            .phone-frame:before {
+                width: 130px;
+                height: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .phone-frame {
+                width: 280px;
+                height: 606px;
+                border-radius: 30px;
+                padding: 10px;
+            }
+
+            .phone-frame:before {
+                width: 110px;
+                height: 22px;
+            }
+
+            .logo {
+                font-size: 36px;
+            }
+
+            .tagline {
+                font-size: 20px;
+            }
+
+            .features li {
+                font-size: 16px;
+            }
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* URL Bar */
+        .url-bar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            max-width: 90%;
+        }
+
+        .url-bar input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .url-bar button {
+            background: #1FA03F;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .url-bar button:hover {
+            background: #146B2E;
+        }
+    </style>
+</head>
+<body>
+    <!-- URL Bar -->
+
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Info Section -->
+        <div class="info-section">
+            <div class="logo">
+                 Agrotahlilchi
+            </div>
+            <div class="tagline">
+                Tuproqni 10 soniyada tahlil qiling. Sun'iy intellekt sizga yordam beradi.
+            </div>
+            <ul class="features">
+                <li>10 soniyada tuproq tahlili</li>
+                <li>Sun'iy asosidagi tavsiyalar (hali deploy qilinmagan - lokal tavsiya)</li>
+                <li>Offline ishlaydi</li>
+                <li>15+ ekin uchun mos</li>
+                <li>O'g'it va sug'orish rejasi</li>
+                <li>Bepul asosiy funksiyalar</li>
+            </ul>
+           
+        </div>
+
+        <!-- Mobile Frame -->
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="loader"></div>
+                    <div class="loading-text">Ilova yuklanmoqda...</div>
+                </div>
+                <iframe 
+                    id="appFrame"
+                    src="https://lighthearted-hummingbird-6f0239.netlify.app/"
+                    allow="camera; microphone; geolocation"
+                    sandbox="allow-same-origin allow-scripts allow-forms allow-modals allow-popups"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="reloadFrame()" title="Qayta yuklash">
+            🔄
+        </button>
+        <button class="control-btn" onclick="toggleFullscreen()" title="To'liq ekran">
+            ⛶
+        </button>
+    </div>
+
+    <script>
+        // Get elements
+        const iframe = document.getElementById('appFrame');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const urlInput = document.getElementById('urlInput');
+
+        // Hide loading overlay when iframe loads
+        iframe.addEventListener('load', function() {
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 500);
+        });
+
+        // Load URL function
+        function loadUrl() {
+            const url = urlInput.value.trim();
+            if (url) {
+                loadingOverlay.classList.remove('hidden');
+                iframe.src = url;
+            } else {
+                alert('Iltimos, Expo URL kiriting!');
+            }
+        }
+
+        // Reload frame
+        function reloadFrame() {
+            loadingOverlay.classList.remove('hidden');
+            iframe.src = iframe.src;
+        }
+
+        // Toggle fullscreen
+        function toggleFullscreen() {
+            const phoneFrame = document.querySelector('.phone-frame');
+            if (!document.fullscreenElement) {
+                phoneFrame.requestFullscreen().catch(err => {
+                    alert(`Xato: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Handle Enter key in URL input
+        urlInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loadUrl();
+            }
+        });
+
+        // Optional: Auto-hide loading after 5 seconds
+        setTimeout(() => {
+            if (!loadingOverlay.classList.contains('hidden')) {
+                loadingOverlay.classList.add('hidden');
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
