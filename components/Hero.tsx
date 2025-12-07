@@ -41,7 +41,7 @@ export default function Hero() {
 
         <div className="flex gap-sm flex-wrap">
           <a
-            href="https://agrotahlilchi.uz/mvp"
+            href="https://agrotahlilchi.uz/demo"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-4 rounded-sm font-bold text-base no-underline inline-flex items-center gap-2 cursor-pointer border-none transition-all bg-gradient-to-br from-primary-green to-deep-green text-white shadow-[0_10px_30px_rgba(31,160,63,0.3)] hover:translate-y-[-2px] hover:shadow-[0_15px_40px_rgba(31,160,63,0.4)] relative overflow-hidden group"
