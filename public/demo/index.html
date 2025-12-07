@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrotahlilchi - Mobil Ilova Demo</title>
+    <title>Agrotahlilchi - AI500 Hackathon Final Demo</title>
     <style>
         * {
             margin: 0;
@@ -12,450 +12,1134 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #1FA03F 0%, #146B2E 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1400px;
-            width: 100%;
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* Info Section */
-        .info-section {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            color: white;
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e5e3f, #228B22);
+            padding: 25px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .logo {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .tagline {
-            font-size: 24px;
-            margin-bottom: 30px;
-            opacity: 0.95;
-            line-height: 1.4;
-        }
-
-        .features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .features li {
-            padding: 12px 0;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .features li:before {
-            content: "✓";
-            background: rgba(255, 255, 255, 0.2);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-size: 32px;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+        .logo-text h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
-        .btn {
-            padding: 14px 28px;
-            border-radius: 12px;
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+        }
+
+        .main-site-btn {
+            background: white;
+            color: #228B22;
+            padding: 14px 32px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             font-size: 16px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: all 0.3s ease;
-            border: 2px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .btn-primary {
+        .main-site-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            background: #f0f0f0;
+        }
+
+        /* Hero Section */
+        .hero {
             background: white;
-            color: #1FA03F;
+            margin: 40px 0;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        .hero h2 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: white;
+        .hero p {
+            font-size: 20px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .hackathon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+            animation: pulse-badge 2s infinite;
         }
 
-        /* Mobile Frame */
-        .phone-frame {
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+         /* Video Section */
+        .section {
+            background: white;
+            margin: 40px 0;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .video-container {
             position: relative;
-            width: 375px;
-            height: 812px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            background: #000;
+            min-height: 400px; /* Prevent layout shift */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+
+        .video-description {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-description h3 {
+            font-size: 24px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .video-description p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .video-timeline {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-time {
+            font-weight: 700;
+            color: #228B22;
+            min-width: 80px;
+        }
+
+
+        /* Mobile Frame Section */
+        .mobile-section {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .mobile-frame {
+            position: sticky;
+            top: 120px;
+            width: 400px;
+            height: 800px;
             background: #1a1a1a;
             border-radius: 40px;
             padding: 15px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 0 0 14px #2a2a2a,
-                0 0 0 16px #1a1a1a;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .mobile-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .mobile-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Roadmap */
+        .roadmap {
+            flex: 1;
+        }
+
+        .roadmap-phase {
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-phase:hover {
+            border-color: #228B22;
+            box-shadow: 0 8px 30px rgba(34, 139, 34, 0.15);
+            transform: translateX(10px);
+        }
+
+        .roadmap-phase.completed {
+            border-color: #228B22;
+            background: linear-gradient(135deg, #e8f5e9, #ffffff);
+        }
+
+        .roadmap-phase.current {
+            border-color: #FFA500;
+            background: linear-gradient(135deg, #fff8e1, #ffffff);
+        }
+
+        .phase-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .phase-badge.completed {
+            background: #228B22;
+            color: white;
+        }
+
+        .phase-badge.current {
+            background: #FFA500;
+            color: white;
+        }
+
+        .phase-badge.next {
+            background: #2196F3;
+            color: white;
+        }
+
+        .phase-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .phase-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .phase-content li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 15px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .phase-content li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #228B22;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .roadmap-phase.next .phase-content li::before {
+            content: "→";
+            color: #2196F3;
+        }
+
+        .achievement {
+            background: #e8f5e9;
+            border-left: 4px solid #228B22;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .achievement-title {
+            font-weight: 700;
+            color: #228B22;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .achievement-text {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* API Section */
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .api-endpoint {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 30px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .api-endpoint:hover {
+            border-color: #228B22;
+            box-shadow: 0 8px 25px rgba(34, 139, 34, 0.1);
+        }
+
+        .api-method {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .api-method.post {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .api-method.get {
+            background: #2196F3;
+            color: white;
+        }
+
+        .api-url {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #4CAF50;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .api-description {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .api-response {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .api-response-title {
+            font-weight: 700;
+            color: #228B22;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .chatbot-header h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .chatbot-messages {
+            height: 450px;
+            overflow-y: auto;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
             flex-shrink: 0;
         }
 
-        /* Notch */
-        .phone-frame:before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 30px;
-            background: #1a1a1a;
-            border-radius: 0 0 20px 20px;
-            z-index: 10;
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #2196F3, #21CBF3);
         }
 
-        /* Speaker */
-        .phone-frame:after {
-            content: '';
-            position: absolute;
-            top: 22px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 6px;
-            background: #333;
-            border-radius: 3px;
-            z-index: 11;
-        }
-
-        /* Screen */
-        .phone-screen {
-            width: 100%;
-            height: 100%;
+        .message-content {
             background: white;
-            border-radius: 30px;
-            overflow: hidden;
-            position: relative;
+            padding: 15px 20px;
+            border-radius: 16px;
+            max-width: 70%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .phone-screen iframe {
-            width: 100%;
-            height: 100%;
+        .message.user .message-content {
+            background: #2196F3;
+            color: white;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 15px;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #228B22;
+            border-radius: 50%;
+            margin: 0 3px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .chatbot-input input:focus {
+            border-color: #228B22;
+        }
+
+        .chatbot-input button {
+            margin-left: 12px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            color: white;
             border: none;
-            display: block;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        /* Loading Overlay */
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+        .chatbot-input button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            padding: 20px;
             background: white;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-            transition: opacity 0.5s ease;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-top: 1px solid #e0e0e0;
         }
 
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #1FA03F;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            margin-top: 20px;
-            color: #666;
+        .quick-action-btn {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
             font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-action-btn:hover {
+            background: #228B22;
+            color: white;
+            border-color: #228B22;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .mobile-section {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-frame {
+                position: relative;
+                top: 0;
+                margin: 0 auto;
+            }
+        }
+
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
+            .hero {
+                padding: 40px 20px;
             }
 
-            .info-section {
-                text-align: center;
-                max-width: 100%;
+            .hero h2 {
+                font-size: 32px;
             }
 
-            .logo {
-                justify-content: center;
+            .section {
+                padding: 30px 20px;
             }
 
-            .cta-buttons {
-                justify-content: center;
+            .api-grid {
+                grid-template-columns: 1fr;
             }
 
-            .phone-frame {
-                width: 320px;
-                height: 693px;
-                border-radius: 35px;
-                padding: 12px;
+            .mobile-frame {
+                width: 100%;
+                max-width: 375px;
+                height: 667px;
             }
 
-            .phone-frame:before {
-                width: 130px;
-                height: 25px;
+            .chatbot-messages {
+                height: 350px;
             }
-        }
-
-        @media (max-width: 480px) {
-            .phone-frame {
-                width: 280px;
-                height: 606px;
-                border-radius: 30px;
-                padding: 10px;
-            }
-
-            .phone-frame:before {
-                width: 110px;
-                height: 22px;
-            }
-
-            .logo {
-                font-size: 36px;
-            }
-
-            .tagline {
-                font-size: 20px;
-            }
-
-            .features li {
-                font-size: 16px;
-            }
-        }
-
-        /* Controls */
-        .controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 100;
-        }
-
-        .control-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            transition: all 0.3s ease;
-        }
-
-        .control-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-        }
-
-        /* URL Bar */
-        .url-bar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 100;
-            max-width: 90%;
-        }
-
-        .url-bar input {
-            border: none;
-            outline: none;
-            font-size: 14px;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .url-bar button {
-            background: #1FA03F;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .url-bar button:hover {
-            background: #146B2E;
         }
     </style>
 </head>
 <body>
-    <!-- URL Bar -->
-
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Info Section -->
-        <div class="info-section">
-            <div class="logo">
-                 Agrotahlilchi
-            </div>
-            <div class="tagline">
-                Tuproqni 10 soniyada tahlil qiling. Sun'iy intellekt sizga yordam beradi.
-            </div>
-            <ul class="features">
-                <li>10 soniyada tuproq tahlili</li>
-                <li>Sun'iy asosidagi tavsiyalar (hali deploy qilinmagan - lokal tavsiya)</li>
-                <li>Offline ishlaydi</li>
-                <li>15+ ekin uchun mos</li>
-                <li>O'g'it va sug'orish rejasi</li>
-                <li>Bepul asosiy funksiyalar</li>
-            </ul>
-           
-        </div>
-
-        <!-- Mobile Frame -->
-        <div class="phone-frame">
-            <div class="phone-screen">
-                <div class="loading-overlay" id="loadingOverlay">
-                    <div class="loader"></div>
-                    <div class="loading-text">Ilova yuklanmoqda...</div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🌱</div>
+                    <div class="logo-text">
+                        <h1>Agrotahlilchi</h1>
+                        <p>Sun'iy intellektga asoslangan tuproq tahlili</p>
+                    </div>
                 </div>
-                <iframe 
-                    id="appFrame"
-                    src="https://lighthearted-hummingbird-6f0239.netlify.app/"
-                    allow="camera; microphone; geolocation"
-                    sandbox="allow-same-origin allow-scripts allow-forms allow-modals allow-popups"
-                ></iframe>
+                <a href="https://agrotahlilchi.uz" class="main-site-btn">
+                    🌐 Asosiy saytga o'tish →
+                </a>
             </div>
         </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="container">
+        <div class="hero">
+            <span class="hackathon-badge">
+                🏆 AI500 Hackathon - Ikkinchi bosqich
+            </span>
+            <h2>Fermerlar uchun sun'iy intellekt yordamchi</h2>
+            <p>
+                700+ tuproq namunalari asosida o'qitilgan sun'iy intellekt modeli yordamida 
+                10 soniyada tuproq tahlili va ekin tavsiyalari
+            </p>
+        </div>
+
+       <!-- Video Section -->
+        <div class="section">
+            <h2 class="section-title">📹 Videotaqdimot</h2>
+            
+            <div class="video-container">
+                <video 
+                    controls 
+                    preload="metadata"
+                    poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='600'%3E%3Crect fill='%23228B22' width='1000' height='600'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='40' fill='white'%3E🌱 Agrotahlilchi Demo%3C/text%3E%3C/svg%3E"
+                    style="opacity: 1;">
+                    <source src="https://zafarts.uz/assets/uploads/avatars/agrotahlilchi.mp4" type="video/mp4">
+                    Brauzeringiz videoni qo'llab-quvvatlamaydi.
+                </video>
+            </div>
+
+            <div class="video-description">
+                <h3>Video tavsifi</h3>
+                <p>
+                    <strong>Agrotahlilchi</strong> - O'zbekiston fermerlari uchun yaratilgan innovatsion mobil ilova. 
+                    Sun'iy intellekt va kompyuter ko'rish texnologiyalari yordamida tuproq holatini real vaqtda tahlil qiladi.
+                </p>
+                <p>
+                    Loyiha AI500 hackathon doirasida ishlab chiqilgan va hozirda MVP (Minimum Viable Product) bosqichida. 
+                    700+ ta real tuproq rasmlari asosida o'qitilgan SI modeli 85-90% aniqlik bilan tuproq turini 
+                    va namlik darajasini aniqlaydi. Ilova React Native (Expo) yordamida yaratilgan bo'lib, model offline rejimda ishlaydi. Haqiqiy ilovada (apk) real ma'lumotlar bilan sinovdan o'tkazilgan. Web demo esa hozircha mock tahlil bilan ishlaydi.
+                </p>
+
+                <div class="video-timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-time">1</span>
+                        <span>Muammo: Tuproq degradatsiyasi va noto'g'ri ekin tanlovi</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">2</span>
+                        <span>Yechim: Agrotahlilchi mobil ilovasi - bir necha soniyada bepul tahlil</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">3</span>
+                        <span>Texnologiya: PyTorch, ONNX, React Native+Expo</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">4</span>
+                        <span>Live Demo: Tuproq rasmini yuklash va SI tahlili</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">5</span>
+                        <span>Natijalar: Tuproq turi, namlik va ekin tavsiyalari</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">6</span>
+                        <span>Yo'l xaritasi: iOS/Android ilova, model takomillashtirish</span>
+                    </div>
+                                        <div class="timeline-item">
+                        <span class="timeline-time">7</span>
+                        <span>Real android ilovada real tuproq surati bilan sinalgan. Web demo esa mock tahlil bilan ishlamoqda (hozircha)</span>
+                    </div>
+                                        <div class="timeline-item">
+                        <span class="timeline-time">8</span>
+                        <span>Loyiha talabnomasi asosida O'zbekiston Oziq-ovqat Uyushmasidan tegishli tavsiyanoma xati olingan. Qishloq xo‘jaligida bilim va innovatsiyalar milliy markazidan tegishli tavsiya xati olinish jarayonida </span>
+                    </div>
+                                    <div class="timeline-item">
+                        <span class="timeline-time">9</span>
+                        <span>Loyiha talabnomasi Innovatsion rivojlanish Agentligi tomonidan e'lon qilingan "SI-G'oyadan Amaliyotga" amaliy tadqiqotlar tanloviga taqdim etilgan </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Frame & Roadmap Section -->
+        <div class="section">
+            <h2 class="section-title">📱 Live Demo & Loyiha rivoji yo'l xaritasi</h2>
+             <h3 >Web demoni sinash: Kirishni bosib telefon va parolni kiriting</h3> 
+            <h4 >Telefon: +998941234567</h4>
+              <h4 >Parol: Parol123</h4>
+              <br   >
+            <div class="mobile-section">
+                <!-- Mobile Frame -->
+                <div class="mobile-frame">
+                    <div class="mobile-screen">
+                        <iframe src="https://lighthearted-hummingbird-6f0239.netlify.app/"></iframe>
+                    </div>
+                </div>
+
+                <!-- Roadmap -->
+                <div class="roadmap">
+                    <!-- Phase 1: Completed -->
+                    <div class="roadmap-phase completed">
+                        <span class="phase-badge completed">✓ TUGALLANGAN </span>
+                        <div class="phase-title">
+                            <span>💡</span>
+                            1-Bosqich: G'oya + prototip
+                        </div>
+                        <div class="phase-content">
+                            <ul>
+                                <li>Muammoni aniqlash va tadqiq qilish</li>
+                                <li>Bozor tahlili </li>
+                                <li>Texnik arxitektura loyihalash</li>
+                                <li>Dastlabki prototip yaratish</li>
+                                <li>AI500 hackathonga ro'yxatdan o'tish</li>
+                                <li>Taqdimot sayti va mobil UI ni ishlab chiqish. Prototipning dastlabki sinovi</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2: Current (MVP) -->
+                    <div class="roadmap-phase current">
+                        <span class="phase-badge current">🔥 HOZIR</span>
+                        <div class="phase-title">
+                            <span>🚀</span>
+                            2-Bosqich: MVP (Minimum Viable Product)
+                        </div>
+                        <div class="phase-content">
+                            <ul>
+                                <li><strong>Backend API:</strong> To'liq tayyor va Railwayda deploy qilingan (FastAPI + Python)</li>
+                                <li><strong>ML Model:</strong> 700+ ta real tuproq rasmi asosida o'qitilgan model</li>
+                                <li><strong>Aniqlik:</strong> 85-90% (tuproq turi va namlik darajasi tasnifi)</li>
+                                <li><strong>Tuproq turлари:</strong> Qo'ng'ir, kulrang, qora, qumloq (4 tur)</li>
+                                <li><strong>Namlik darajalari:</strong> Nam, o'rtacha, quruq (3 daraja)</li>
+                                <li><strong>Mobil ilova:</strong> React Native (Expo) asosida tayyor</li>
+                                <li><strong>Offline SI:</strong> Model ilovada ishlaydi - internet kerak emas</li>
+                                <li><strong>Web demo:</strong> Expo web (hozircha mock tahlil bilan)</li>
+                            </ul>
+
+                            <div class="achievement">
+                                <div class="achievement-title">🎖️ Rasmiy ma'lumotnomalar</div>
+                                <div class="achievement-text">
+                                    <strong>✓ O'zbekiston Oziq-ovqat Sanoati Uyushmasidan ijobiy xulosa olindi</strong><br>
+                                    ✓ Qishloq Xo'jaligida Bilim va Innovatsiyalar Milliy Markazidan ma'lumotnoma kutilmoqda<br>
+                                    ✓ "SI: g'oyadan – amaliyotga" amaliy tadqiqotlar tanloviga talabnoma yuborildi
+                                </div>
+                            </div>
+
+                            <div class="achievement">
+                                <div class="achievement-title">💾 Texnologik stek</div>
+                                <div class="achievement-text">
+                                    <strong>ML:</strong> PyTorch, ONNX, TorchScript, Multi-Task Learning<br>
+                                    <strong>Backend:</strong> Python, FastAPI, SQLite, Railway<br>
+                                    <strong>Mobile:</strong> React Native, Expo, TypeScript, AsyncStorage<br>
+                                    <strong>Data:</strong> 700+ tuproq rasmlari, Data augmentation, Transfer learning
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3: Next Steps -->
+                    <div class="roadmap-phase next">
+                        <span class="phase-badge next">→ Kelajakdagi rejalar</span>
+                        <div class="phase-title">
+                            <span>🎯</span>
+                            Keyingi bosqich: Launch & Rivojlantirish
+                        </div>
+                        <div class="phase-content">
+                            <ul>
+                                <li><strong>AI500:</strong> Hakatonning final bosqichiga yo'l olish (Albatta o'tamiz )))</li>
+                                <li><strong>iOS versiya:</strong> App Storega chiqarish (TestFlight beta test)</li>
+                                <li><strong>Android versiya:</strong> Google Play Storega rasmiy reliz</li>
+                                <li><strong>Foydali ma'lumotlar:</strong> Ekinlar, o'g'itlar, sug'orish haqida ma'lumotlar bazasi</li>
+                                <li><strong>Model takomillashtirish:</strong> 2000+ rasm to'plash va 95%+ aniqlikka erishish</li>
+                                <li><strong>Yangi funksiyalar:</strong> O'g'itlash jadvali, Sug'orish rejasi, Hosildorlik bashorati</li>
+                                <li><strong>Qo'shimcha bandlar:</strong> Fermerga qo'llanmalar, video qo'llanmalar, Onlayn maslahat</li>
+                                <li><strong>B2B integratsiya:</strong> Fermer va agrokompaniyalar bilan hamkorlik</li>
+                                <li><strong>Offline SI v2:</strong> Yanada aniqroq va tezroq model</li>
+                                <li><strong>Multi-til:</strong> Ingliz, rus tillari qo'shish</li>
+                                <li><strong>Premium xizmatlar:</strong> Kengaytirilgan tahlillar, Eksport, Cloud backup</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Endpoints Section -->
+       
+
+        <!-- AI Chatbot Section -->
+        <div class="section">
+            <h2 class="section-title">Agronom tog'adan loyiha haqida so'rang. U AiTECH jamoasining raqamli a'zosi</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 16px;">
+                Loyiha haqida savollar bering va agronom tog'amizdan darhol javob oling
+            </p>
+
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <h3>💬 Agronom tog'a</h3>
+                    <p style="font-size: 14px; opacity: 0.9;"> 24/7 javob beradi</p>
+                </div>
+
+                <div class="chatbot-messages" id="chatMessages">
+                    <div class="message">
+                        <div class="message-avatar">AI</div>
+                        <div class="message-content">
+                            Salom! 👋 Men sizning agronom tog'angizman. Men soha bo'yicha kuchli bilimga egaman.  Sizga loyiha haqida ma'lumot berishga tayyorman. Savol bering!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="sendQuickMessage('loyiha')">📱 Loyiha haqida</button>
+                    <button class="quick-action-btn" onclick="sendQuickMessage('model')">🤖 ML Model</button>
+                    <button class="quick-action-btn" onclick="sendQuickMessage('tuproq')">🌱 Tuproq turlari</button>
+                    <button class="quick-action-btn" onclick="sendQuickMessage('qanday')">❓ Qanday ishlaydi</button>
+                    <button class="quick-action-btn" onclick="sendQuickMessage('narx')">💰 Narx</button>
+                </div>
+
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+
+                <div class="chatbot-input">
+                    <input type="text" id="chatInput" placeholder="Savolingizni yozing..." onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()">Yuborish</button>
+                </div>
+            </div>
+            
+        </div>
+        <!-- API Endpoints Section -->
+<div class="section">
+            <h2 class="section-title">🔌 Chatbot API Endpoints</h2>
+         
+        <div class="api-endpoints">
+    <h3>🔌 Chatbot API Endpoints</h3>
+    
+    <!-- Endpoint 1: Greeting -->
+    <div class="api-endpoint-item">
+        <span class="api-method get">GET</span>
+        <div>Demo so'rov</div>
+        <div class="api-url">
+            https://zafarts.uz/my/chatbot-api.php?action=greeting
+        </div>
+       <button onclick="copyToClipboard(...)">Nusxa olish</button>
+        <button onclick="testEndpoint(...)">API ni sinash</button>
+        <div id="response-greeting"></div>
+    </div>
+    
+    <!-- Endpoint 2: Chat -->
+    <div class="api-endpoint-item">
+        <span class="api-method post">POST</span>
+        <div>Xabar yuborish</div>
+        <div class="api-url">
+            https://zafarts.uz/my/chatbot-api.php?action=chat
+        </div>
+        <button onclick="copyToClipboard(...)">Nusxa olish</button>
+        <button onclick="testEndpoint(...)">API ni sinash</button>
+        <div id="response-chat"></div>
+    </div>
+    
+    <!-- Technical Info -->
+    <div>
+        Texnik ma'lumotlar
+        - Backend: PHP 7.4+
+        - Response: JSON
+        - CORS: Enabled
+    </div></div>
+</div>
     </div>
 
-    <!-- Controls -->
-    <div class="controls">
-        <button class="control-btn" onclick="reloadFrame()" title="Qayta yuklash">
-            🔄
-        </button>
-        <button class="control-btn" onclick="toggleFullscreen()" title="To'liq ekran">
-            ⛶
-        </button>
-    </div>
-
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>🏆 AI500 Hackathon - Ikkinchi Bosqich | AiTECH | Agrotahlilchi 2025</p>
+            <div class="footer-links">
+                <a href="https://agrotahlilchi.uz">Asosiy sayt</a>
+                <a href="https://github.com/ZafarTS">GitHub</a>
+                <a href="mailto:zafar@tkti.uz">Aloqa</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 14px; color: #888;">
+                Toshkent kimyo-texnologiya instituti AiTECH jamoasi tomonidan ishlab chiqilgan
+            </p>
+        </div>
+    </footer>
+<script src="chatbot-integration.js"></script>
     <script>
-        // Get elements
-        const iframe = document.getElementById('appFrame');
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        const urlInput = document.getElementById('urlInput');
+  // Configuration - ANIQ URL
+const CHATBOT_API_URL = 'https://zafarts.uz/my/chatbot-api.php';
 
-        // Hide loading overlay when iframe loads
-        iframe.addEventListener('load', function() {
-            setTimeout(() => {
-                loadingOverlay.classList.add('hidden');
-            }, 500);
+// Initialize on page load
+window.addEventListener('load', async () => {
+    await loadGreeting();
+});
+
+/**
+ * Load greeting message from PHP API
+ */
+async function loadGreeting() {
+    try {
+        const response = await fetch(`${CHATBOT_API_URL}?action=greeting`);
+        
+        if (!response.ok) {
+            throw new Error('API response not OK');
+        }
+        
+        const data = await response.json();
+        
+        if (data.success && data.answer) {
+            // Clear default message
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.innerHTML = '';
+            addMessage(data.answer, false);
+        }
+    } catch (error) {
+        console.error('Greeting yuklanmadi:', error);
+        // Keep default greeting if API fails
+    }
+}
+
+/**
+ * Send message to PHP API
+ */
+async function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message
+    addMessage(message, true);
+    input.value = '';
+    
+    // Disable input while processing
+    input.disabled = true;
+    
+    // Show typing indicator
+    showTyping();
+    
+    try {
+        // Send to PHP API
+        const response = await fetch(`${CHATBOT_API_URL}?action=chat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: message })
         });
-
-        // Load URL function
-        function loadUrl() {
-            const url = urlInput.value.trim();
-            if (url) {
-                loadingOverlay.classList.remove('hidden');
-                iframe.src = url;
-            } else {
-                alert('Iltimos, Expo URL kiriting!');
-            }
+        
+        if (!response.ok) {
+            throw new Error('API response not OK');
         }
-
-        // Reload frame
-        function reloadFrame() {
-            loadingOverlay.classList.remove('hidden');
-            iframe.src = iframe.src;
+        
+        const data = await response.json();
+        
+        // Hide typing
+        hideTyping();
+        
+        if (data.success && data.answer) {
+            // Add bot response
+            addMessage(data.answer, false);
+        } else {
+            addMessage('❌ Javob olishda xatolik. Qayta urinib ko\'ring.', false);
         }
+    } catch (error) {
+        hideTyping();
+        console.error('Chat xatosi:', error);
+        addMessage('❌ Server bilan bog\'lanishda xatolik. Iltimos qayta urinib ko\'ring.', false);
+    } finally {
+        // Re-enable input
+        input.disabled = false;
+        input.focus();
+    }
+}
 
-        // Toggle fullscreen
-        function toggleFullscreen() {
-            const phoneFrame = document.querySelector('.phone-frame');
-            if (!document.fullscreenElement) {
-                phoneFrame.requestFullscreen().catch(err => {
-                    alert(`Xato: ${err.message}`);
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        }
+/**
+ * Send quick message
+ */
+function sendQuickMessage(keyword) {
+    const input = document.getElementById('chatInput');
+    input.value = keyword;
+    sendMessage();
+}
 
-        // Handle Enter key in URL input
-        urlInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                loadUrl();
-            }
-        });
+/**
+ * Add message to chat
+ */
+function addMessage(text, isUser) {
+    const messagesContainer = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isUser ? 'user' : ''}`;
+    
+    messageDiv.innerHTML = `
+        <div class="message-avatar">${isUser ? 'Siz' : 'AI'}</div>
+        <div class="message-content">${text}</div>
+    `;
+    
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
 
-        // Optional: Auto-hide loading after 5 seconds
-        setTimeout(() => {
-            if (!loadingOverlay.classList.contains('hidden')) {
-                loadingOverlay.classList.add('hidden');
-            }
-        }, 5000);
+/**
+ * Show typing indicator
+ */
+function showTyping() {
+    const indicator = document.getElementById('typingIndicator');
+    if (indicator) {
+        indicator.classList.add('active');
+    }
+    const messagesContainer = document.getElementById('chatMessages');
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+/**
+ * Hide typing indicator
+ */
+function hideTyping() {
+    const indicator = document.getElementById('typingIndicator');
+    if (indicator) {
+        indicator.classList.remove('active');
+    }
+}
+
+/**
+ * Handle Enter key
+ */
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
     </script>
 </body>
 </html>
